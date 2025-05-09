@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防水小哥抓漏表單</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: white;
+      background-image: url('logo.png');
+      background-size: 60%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #005B78; /* 藍色字 */
+    }
+
+    .form-container {
+      max-width: 430px;
+      margin: auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .logo {
+      display: block;
+      margin: 20px auto;
+      width: 80%;
+      max-width: 300px;
+    }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0;
+      flex-wrap: nowrap;
+    }
+
+    .form-row label {
+      flex: 1.3;
+      font-size: 16px;
+      word-break: keep-all;
+    }
+
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      flex: 2;
+      font-size: 16px;
+      padding: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      color: #005B78;
+    }
+
+    select option {
+      color: #005B78;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 40px;
+      overflow-y: auto;
+    }
+
+    textarea:focus,
+    textarea:not(:placeholder-shown) {
+      min-height: 60px;
+    }
+
+    .auto-grow {
+      overflow-y: hidden;
+      min-height: 40px;
+    }
+
+    input[type="radio"] {
+      margin-left: 10px;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .radio-group label {
+      color: #005B78;
+    }
+
+    .radio-group input:checked + label {
+      color: black;
+    }
+
+    .radio-group input:checked[data-value="是"] + label {
+      color: red;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const dateInput = document.getElementById('date');
+      if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
+      }
+
+      const autoGrowInputs = document.querySelectorAll('textarea');
+      autoGrowInputs.forEach(el => {
+        el.classList.add('auto-grow');
+        el.addEventListener('input', () => {
+          el.style.height = 'auto';
+          el.style.height = (el.scrollHeight) + 'px';
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="form-container">
+    <img src="logo.png" alt="Logo" class="logo">
+
+    <div class="form-row">
+      <label for="date">日期：</label>
+      <input type="date" id="date" name="date">
+    </div>
+
+    <div class="form-row">
+      <label for="address">抓漏地址：</label>
+      <textarea id="address" name="address" placeholder="請輸入地址"></textarea>
+    </div>
+
+    <div class="form-row">
+      <label for="type">場勘或抓漏：</label>
+      <select id="type" name="type">
+        <option value="" style="color:#005B78">請選擇</option>
+        <option value="場勘">場勘</option>
+        <option value="抓漏">抓漏</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label for="building">建物型態：</label>
+      <select id="building" name="building">
+        <option value="" style="color:#005B78">請選擇</option>
+        <option value="公寓">公寓</option>
+        <option value="新大樓">新大樓</option>
+        <option value="電梯華廈">電梯華廈</option>
+        <option value="獨棟透天">獨棟透天</option>
+        <option value="其他">其他</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label for="floor">位於樓層：</label>
+      <input type="text" id="floor" name="floor">
+    </div>
+
+    <div class="form-row">
+      <label for="totalFloor">總樓層：</label>
+      <input type="text" id="totalFloor" name="totalFloor">
+    </div>
+
+    <div class="form-row">
+      <label>是否看到水珠或水流：</label>
+      <div class="radio-group">
+        <input type="radio" id="seeWaterYes" name="seeWater" value="是" data-value="是"><label for="seeWaterYes">是</label>
+        <input type="radio" id="seeWaterNo" name="seeWater" value="否"><label for="seeWaterNo">否</label>
+        <input type="radio" id="seeWaterMaybe" name="seeWater" value="不確定"><label for="seeWaterMaybe">不確定</label>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>漏水是否持續不斷：</label>
+      <div class="radio-group">
+        <input type="radio" id="leakContinueYes" name="leakContinue" value="是" data-value="是"><label for="leakContinueYes">是</label>
+        <input type="radio" id="leakContinueNo" name="leakContinue" value="否"><label for="leakContinueNo">否</label>
+        <input type="radio" id="leakContinueMaybe" name="leakContinue" value="不確定"><label for="leakContinueMaybe">不確定</label>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>是否與下雨有關：</label>
+      <div class="radio-group">
+        <input type="radio" id="rainRelatedYes" name="rainRelated" value="是" data-value="是"><label for="rainRelatedYes">是</label>
+        <input type="radio" id="rainRelatedNo" name="rainRelated" value="否"><label for="rainRelatedNo">否</label>
+        <input type="radio" id="rainRelatedMaybe" name="rainRelated" value="不確定"><label for="rainRelatedMaybe">不確定</label>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>冷水管是否掉壓：</label>
+      <div class="radio-group">
+        <input type="radio" id="coldPipeYes" name="coldPipe" value="是" data-value="是"><label for="coldPipeYes">是</label>
+        <input type="radio" id="coldPipeNo" name="coldPipe" value="否"><label for="coldPipeNo">否</label>
+        <input type="radio" id="coldPipeUntested" name="coldPipe" value="未測試"><label for="coldPipeUntested">未測試</label>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>熱水管是否掉壓：</label>
+      <div class="radio-group">
+        <input type="radio" id="hotPipeYes" name="hotPipe" value="是" data-value="是"><label for="hotPipeYes">是</label>
+        <input type="radio" id="hotPipeNo" name="hotPipe" value="否"><label for="hotPipeNo">否</label>
+        <input type="radio" id="hotPipeUntested" name="hotPipe" value="未測試"><label for="hotPipeUntested">未測試</label>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>排水管測試是否有異：</label>
+      <div class="radio-group">
+        <input type="radio" id="drainTestYes" name="drainTest" value="是" data-value="是"><label for="drainTestYes">是</label>
+        <input type="radio" id="drainTestNo" name="drainTest" value="否"><label for="drainTestNo">否</label>
+        <input type="radio" id="drainTestUntested" name="drainTest" value="未測試"><label for="drainTestUntested">未測試</label>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>防水測試是否有異：</label>
+      <div class="radio-group">
+        <input type="radio" id="waterproofTestYes" name="waterproofTest" value="是" data-value="是"><label for="waterproofTestYes">是</label>
+        <input type="radio" id="waterproofTestNo" name="waterproofTest" value="否"><label for="waterproofTestNo">否</label>
+        <input type="radio" id="waterproofTestUntested" name="waterproofTest" value="未測試"><label for="waterproofTestUntested">未測試</label>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label for="description">漏水狀況補充描述：</label>
+      <textarea id="description" name="description" placeholder="請輸入補充說明"></textarea>
+    </div>
+
+    <div class="form-row">
+      <label for="suggestion">判斷結果/處理建議：</label>
+      <textarea id="suggestion" name="suggestion" placeholder="請輸入建議"></textarea>
+    </div>
+
+    <div class="form-row">
+      <label for="technician">技師姓名：</label>
+      <input type="text" id="technician" name="technician" value="Brian">
+    </div>
+
+  </div>
+</body>
+</html>
