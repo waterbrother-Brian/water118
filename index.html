@@ -245,15 +245,71 @@
       <input type="text" id="technician" name="technician" value="Brian">
     </div>
     
-    <div style="display: flex; align-items: center; margin-bottom: 15px;">
-  <label style="flex: 1; color: #00557f;">技師姓名：</label>
-  <div style="flex: 2; color: black;">
-    <label><input type="checkbox" name="technicians[]" value="Brian"> Brian</label><br>
-    <label><input type="checkbox" name="technicians[]" value="David"> David</label><br>
-    <label><input type="checkbox" name="technicians[]" value="奇勳"> 奇勳</label><br>
-    <label><input type="checkbox" name="technicians[]" value="家偉"> 家偉</label><br>
-    <label><input type="checkbox" name="technicians[]" value="志豪"> 志豪</label><br>
-    <label><input type="checkbox" name="technicians[]" value="博韜"> 博韜</label>
+  <style>
+  .tech-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+  }
+
+  .tech-option {
+    display: block;
+    background-color: white;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+    color: gray;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .tech-option input[type="checkbox"] {
+    display: none;
+  }
+
+  .tech-option input[type="checkbox"]:checked + span {
+    background-color: #00557f;
+    color: white;
+    border-radius: 10px;
+    padding: 8px 0;
+    display: block;
+  }
+
+  .tech-option span {
+    display: block;
+  }
+</style>
+
+<div style="margin-bottom: 15px;">
+  <label style="color: #00557f; display: block; margin-bottom: 8px; font-weight: bold;">技師姓名：</label>
+  <div class="tech-group">
+    <label class="tech-option">
+      <input type="checkbox" name="technicians[]" value="Brian">
+      <span>Brian</span>
+    </label>
+    <label class="tech-option">
+      <input type="checkbox" name="technicians[]" value="David">
+      <span>David</span>
+    </label>
+    <label class="tech-option">
+      <input type="checkbox" name="technicians[]" value="奇勳">
+      <span>奇勳</span>
+    </label>
+    <label class="tech-option">
+      <input type="checkbox" name="technicians[]" value="Joey">
+      <span>Joey</span>
+    </label>
+    <label class="tech-option">
+      <input type="checkbox" name="technicians[]" value="志豪">
+      <span>志豪</span>
+    </label>
+    <label class="tech-option">
+      <input type="checkbox" name="technicians[]" value="博韜">
+      <span>博韜</span>
+    </label>
   </div>
 </div>
 
